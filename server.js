@@ -43,9 +43,7 @@ app
       const { _page, _limit, product_name } = req.query;
       try {
         if (tempData.length === 0) {
-          const response = await axios.get(
-            "https://3523f64a-177f-4429-9954-60c0329cb886.mock.pstmn.io/products"
-          );
+          const response = await axios.get(process.env.API_HOST_PRODUCT);
           tempData = [...response.data];
         }
 
@@ -63,9 +61,7 @@ app
       const { id } = req.params;
       try {
         if (tempData.length === 0) {
-          const response = await axios.get(
-            "https://3523f64a-177f-4429-9954-60c0329cb886.mock.pstmn.io/products"
-          );
+          const response = await axios.get(process.env.API_HOST_PRODUCT);
           tempData = [...response.data];
         }
         const changeResponse = tempData.filter((item) => item.id == id);
@@ -111,9 +107,7 @@ app
 
     server.post("/api/v1/login", async (req, res) => {
       try {
-        const response = await axios.get(
-          "https://3523f64a-177f-4429-9954-60c0329cb886.mock.pstmn.io/users"
-        );
+        const response = await axios.get(process.env.APP_HOST_USER);
 
         const haveEmail = response.data.filter(
           (item) => item.email === req.body.email
